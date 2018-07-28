@@ -1,5 +1,6 @@
 class Queue {
   constructor () {
+    this.active = false
     this.queue = []
     this.length = 0
   }
@@ -7,18 +8,19 @@ class Queue {
   add (todo) {
     this.length += 1
     this.queue.push(todo)
-    return true
+    if (!this.active)
+      this.next()
   }
 
   next () {
-    if (this.queue.length > 0) {
-      let todo = this.queue.shift()
-      todo()
+    if (!this.queue.length) {
+      this.active = false
+      return
     }
-  }
 
-  start () {
-    this.next()
+    let todo = this.queue.shift()
+    this.active = true
+    todo()
   }
 }
 
