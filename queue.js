@@ -16,6 +16,10 @@ class Queue {
       todo()
     }
   }
+
+  start () {
+    this.next()
+  }
 }
 
 module.exports = Queue
