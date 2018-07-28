@@ -13,14 +13,13 @@ class Queue {
   }
 
   next () {
-    if (!this.queue.length) {
+    if (this.queue.length > 0) {
+      let todo = this.queue.shift()
+      this.active = true
+      todo()
+    } else {
       this.active = false
-      return
     }
-
-    let todo = this.queue.shift()
-    this.active = true
-    todo()
   }
 }
 
